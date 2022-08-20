@@ -1,0 +1,14 @@
+Using the data attribute in HTML
+
+Whenever you want to create your own custom attribute, custom in the sense that it isn't 'class' or 'src' etc, you put it in front of 'data-'
+
+e.g.
+<div data-key="65" class="key">
+
+This is then linked to the other element:
+<audio data-key="65" src="sounds/clap.wav"></audio>
+
+
+
+
+in an addEventListener, you can return within the callback function to exit the function without running the rest of the code
