@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML5 Canvas</title>
+  </head>
+  <body>
+    <p>Click below to clear the canvas</p>
+    <button id="clear">Clear</button>
+    <canvas id="draw" width="800" height="800"></canvas>
+    <script>
+      const canvas = document.querySelector("#draw");
+      //what is drawed on?
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      ctx.strokeStyle = "#ajde3j";
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+
+      //at default, the user's mouse is hovering, not clicked
+      let isDrawing = false;
+      let lastX = 0;
+      let lastY = 0;
+      let direction = true;
+      let hue = 0;
+
+      function draw(e) {
+        if (!isDrawing) return; //don't run func if mouse is hovering
+        console.log(e);
+        ctx.beginPath();
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
+        //move from
+        ctx.moveTo(lastX, lastY);
+        //to
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+        //switch from increment to decrement depending on width
+        if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+          direction = !direction;
+        }
+        if (direction) {
+          ctx.lineWidth++;
+        } else {
+          ctx.lineWidth--;
+        }
+      //hue increases by one each time the func is called, changing the colour
+      hue++
+      //the max hue is 360, so when it reaches, just reset it
+      if(hue >= 360){
+        hue = 0
+      }
+    }
+
+    function clearCanvas() {
+        const canvas = document.querySelector("#draw");
+      //what is drawed on?
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+
+
+    const btn = document.querySelector('#clear')
+
+      canvas.addEventListener("mousedown", (e) => {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+      });
+
+
+
+      canvas.addEventListener("mousemove", draw);
+      canvas.addEventListener("mouseup", () => (isDrawing = false));
+      canvas.addEventListener("mouseout", () => (isDrawing = false));
+
+      btn.addEventListener('click', clearCanvas)
+    </script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+
+      p {
+        text-align: center;
+        text-transform: capitalize;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 1.5rem;
+      }
+
+
+      #clear {
+        display: block;
+        margin: 0 auto;
+        padding: 1rem 5rem;
+        background-color: white;
+        border-radius: 5px;
+        border
+      }
+
+      #clear:active {
+        background-color: red;
+      }
+    </style>
+  </body>
+</html>
