@@ -9,7 +9,6 @@
   <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
   <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
 
     function makeGreen() {
       const p = document.querySelector('p');
@@ -18,29 +17,94 @@
     }
 
     // Regular
-
+    console.log('wqssup my ggs')
     // Interpolated
-
+    console.log('this here %s is my good friend', 'Tomo the dog')
     // Styled
 
+    console.log('%c this is my placeholder text', 'font-size: 40px; color: blue; background-color: white')
+
+
+    console.clear()
     // warning!
+
+    console.warn('you are probably making a mistake if you are seeing this')
 
     // Error :|
 
-    // Info
+    console.error('well fuck you have made the mistake')
 
+    // Info
+    console.info('Anyway did you know that the time complexity of a binary search is log(n)?')
     // Testing
 
+      console.clear()
+    const p = document.querySelector('p')
+
+    console.assert(p.textContent === '×BREAK×OWN×', 'that is wrong indeed' )
+
     // clearing
-
+    console.clear()
     // Viewing DOM Elements
-
+    console.log(p)
+    console.dir(p)
     // Grouping together
 
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    console.time('loop through dogs')
+    dogs.forEach(dog => {
+      console.groupCollapsed(dog.name)
+
+      console.log(`Fuck ${dog.name}. All my homies hate ${dog.name}`)
+      console.log(`${dog.name} is ${dog.age} years old`)
+
+      console.groupEnd(dog.name)
+    })
+    console.timeEnd('loop through dogs')
+
+    const n = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1, 1, 1, 1,1 ,1 ,1, 1]
+
+    
     // counting
 
-    // timing
+    console.count('string')
+    console.count('string')
+    console.count('anothe string')
+    console.count('string')
+    console.count('anothe string')
 
+    console.count('anothe string')
+    console.count('anothe string')
+    console.count('anothe string')
+
+    console.count('string')
+    console.count('anothe string')
+    console.count('anothe string')
+    console.count('anothe string')
+    console.count('anothe string')
+
+
+    console.count('string')
+
+    console.count('string')
+
+    console.count('string')
+
+
+    
+    // timing
+    console.time('n^2')
+    for(let i = 0; i < n.length; i++){
+      for(let j = 0; j < n.length; j++){
+        console.log(n[i])
+      }
+    }
+    console.timeEnd('n^2')
+
+
+
+    console.table(dogs)
   </script>
 </body>
 </html>
