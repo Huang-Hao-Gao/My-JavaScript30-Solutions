@@ -96,6 +96,75 @@
   </div>
 
 <script>
+
+  ////My attempt at the challenge before watching the tutorial
+
+  // const items = [...document.querySelectorAll('input[type="checkbox"]')]
+  // console.log(items)
+
+
+  // //to check a box using js, use 'event.currentTarget.checked = true'
+  // let first
+  // items.forEach(item => {
+    
+  //   item.addEventListener('click', event => {
+  //   if(!first){
+  //     let first = items.indexOf(item)
+  //   } else {
+  //     let second = items.indexOf(item)
+  //     const sliced = items.slice(first, second + 1)
+  //     sliced.forEach(e => {
+  //       checkBox(event)
+  //     })
+  //   }
+
+  //  if(event.shiftKey && event.currentTarget.checked){
+  //   console.log('all good mate')
+    
+  //  }
+  // })
+
+
+  // //saves the index of particular element
+
+  // })
+  // function checkBox(event){
+  //   event.currentTarget.checked = true;
+  // }
+
+
+
+////Now I'm following along
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+console.log(checkboxes)
+
+let lastChecked
+
+function handleCheck(e){
+
+  let inBetween = false;
+
+  if(e.shiftKey && this.checked){
+    checkboxes.forEach(box => {
+      if(box === this || box === lastChecked){
+        inBetween = !inBetween
+        console.log(box)
+        console.log('checking')
+      }
+      
+      if(inBetween){
+        box.checked = true;
+      }
+    })
+  }
+
+  lastChecked = this
+
+}
+
+checkboxes.forEach(box => box.addEventListener('click', handleCheck))
+
 </script>
 </body>
 </html>
