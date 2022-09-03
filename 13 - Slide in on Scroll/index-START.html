@@ -58,6 +58,32 @@
       };
     }
 
+
+    const images = document.querySelectorAll('.slide-in')
+
+    function checkScroll (e) {
+      images.forEach(image => {
+        //sum y at top of page + h of window to get bottom of page. subtract half of the image
+        const slideInAt = (window.scrollY + window.innerHeight) - image.height / 2
+        //finds y value of the bottom of img
+        const imageBottom = image.offsetTop + image.height
+        const isHalfShown = slideInAt > image.offsetTop
+        const isNotScrolledPast = window.scrollY < imageBottom
+        console.log(isNotScrolledPast)
+
+        if(isHalfShown && isNotScrolledPast){
+          image.classList.add('active')
+        } else {
+          image.classList.remove('active')
+
+        }
+      })
+      
+    }
+
+    window.addEventListener('scroll', debounce(checkScroll))
+
+
   </script>
 
   <style>
