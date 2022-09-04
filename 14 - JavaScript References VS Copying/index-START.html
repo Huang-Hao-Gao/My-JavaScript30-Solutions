@@ -8,17 +8,23 @@
 
   <script>
     // start with strings, numbers and booleans
-
+    let name = 'huanghao'
+    let name2 = name
+    console.log(name, name2)
+    name = 'gao'
+    console.log(name, name2)
+    
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
 
     // You might think we can just do something like this:
-
+    const players2 = players
     // however what happens when we update that array?
-
+    // players[0] = 'Huanghao'
     // now here is the problem!
+    // console.log(players, players2)
 
     // oh no - we have edited the original array too!
 
@@ -26,11 +32,29 @@
 
     // So, how do we fix this? We take a copy instead!
 
-    // one way
+    const players7 = players.slice()
 
+    players7[0] = 'this works?'
+    console.log(players, players7)
+
+
+    // one way
+    const players3 = [].concat(players)
+    players3[0] = 'Huanghao'
+    console.log(players, players3)
     // or create a new array and concat the old one in
 
     // or use the new ES6 Spread
+    const players5 = [...players]
+    players5[0] = 'jackaboy'
+    console.log(players, players5)
+
+    //array.from
+
+    const players6 = Array.from(players)
+    players6[0] = 'your mother'
+    console.log(players, players6)
+    
 
     // now when we update it, the original one isn't changed
 
@@ -42,11 +66,22 @@
       age: 80
     };
 
-    // and think we make a copy:
 
-    // how do we take a copy instead?
+    console.clear()
+    // and think we make a copy:
+    const newPerson = person
+
+    newPerson.age = 100
+    console.log(person, newPerson)
+    // how do we take a copy instead?#
+    const person2 = Object.assign({}, person, {personality: 'none', age: 500})
+    console.log(person, person2)
 
     // We will hopefully soon see the object ...spread
+    const person3 = {...person}
+    person3.age = 40
+    person3.name = 'Huanghao'
+    console.log(person, person3)
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
